@@ -1,0 +1,220 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial;   
+}
+
+body{
+    background-color: #333;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width:min-content;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+button{
+    padding: 0.25rem .5rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 3vmin;
+}
+
+/* header */
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ccc;
+    align-items: center;
+    gap: 1rem;
+    color:aliceblue
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(200, 50%,37%);
+    color: hsl(200, 25%, 90%);
+    border-radius: 1vmin;
+    width:15vmin;
+    height: 15vmin;
+    font-size: calc(15vmin / 8 * 3);
+    cursor: pointer;
+}
+
+#new{
+    background-color: hsla(200, 52%, 91%, 0.741);
+    border-radius: 4px;
+}
+
+.scores-container{
+    display: flex;
+}
+
+.score-container,
+.best-score-container{
+    display: block;
+    text-align: center;
+    padding: 1vmin 0;
+    min-height: 2.5rem;
+    width: 5rem;
+    margin-right: 1vmin;
+    background-color: hsla(200, 52%, 91%, 0.741);
+    color: hsl(200, 25%, 10%);
+    border-radius: 1vmin;
+}
+
+.score-label,
+.best-label{
+    font-size: 3vmin;
+    margin-bottom: 4px;
+}
+
+.score,
+.best-score{
+    position: relative;
+    line-height: 4vmin;
+    font-size: 3vmin;
+    transition: transform 100ms ease-in-out;
+}
+
+.add-score{
+    position: absolute;
+    right:10px;
+    color: hsl(200, 25%, 10%);
+    animation: addScoreFade 0.8s forwards ease-in-out;
+
+}
+
+/* game-board*/
+
+#game-board {
+    background-color: #ccc;
+    display: grid;
+    margin: auto 0;
+    font-size: calc(var(--cell-size) / 8 * 3);
+    grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+    grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+    grid-gap: var(--cell-gap);
+    padding: var(--cell-gap);
+    border-radius: 1vmin;
+    position: relative;
+}
+
+.cell{
+    background-color:darkgray;
+    border-radius: 1vmin;
+}
+
+.tile{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: var(--cell-size);
+    width: var(--cell-size);
+    border-radius: 1vmin;
+    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    font-weight: bold;
+    background-color: hsl(200,50%,var(--background-lightness));
+    color: hsl(200, 25%, var(--text-lightness));
+    animation: show 200ms ease-in-out;
+    transition: 100ms ease-in-out;
+}
+
+/* modals */
+
+.modal{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    display: flex;  
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    z-index:1;
+    backdrop-filter: blur(2px);
+    transition: opacity 300ms ease-in-out;
+}
+
+
+.help{
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    overflow: auto;
+}
+.help::-webkit-scrollbar {
+    width: 0.2em;
+}
+
+.help::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 4px;
+    outline: 1px solid #333;
+}
+.help div{
+    top:0;
+    right:0;
+    position: absolute;
+    font-size: 1.5rem;
+    margin: 8px;
+    cursor: pointer;
+}
+.help p{
+    margin:0;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.game-over{
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over p{
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.game-over .try{
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+
+@keyframes show{
+    0%{
+        opacity: .5;
+        transform: scale(0);
+    }
+}
+
+@keyframes pop{
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes addScoreFade {
+    0%{
+        top:30px;
+        opacity: 1;
+    }
+    100% {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+.show {
+    opacity: 1;
+    visibility: visible;
+}

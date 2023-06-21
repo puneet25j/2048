@@ -1,0 +1,19 @@
+{
+  "name": "2048",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Grid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "live-server --port=5500"
+  },
+  "keywords": [
+    "2048",
+    "js"
+  ],
+  "author": "punnet",
+  "license": "ISC",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
+}
